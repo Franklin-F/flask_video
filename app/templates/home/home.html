@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>VideoHub</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-min-337.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='img/favicon.png') }}" type="image/png">
+  </head>
+  <body class="back">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+     <div class="container-fluid">
+       <div class="navbar-header">
+         <a style="color: #16A085;" class="navbar-brand" href="{{ url_for('home.index') }}">黄星</a>
+       </div>
+       <form class="ml navbar-form navbar-left" action="search" method="post">
+          <div class="form-group">
+            <input style="width:500px;" name="search" type="text" class="form-control" placeholder="输入关键字">
+          </div>
+          <button type="submit" class="bt btn btn-default">搜索</button>
+       </form>
+       <ul class="nav navbar-nav navbar-right">
+       {% if not logged_in %}
+         <li><a style="color: #16A085;" href="{{ url_for('home.signup') }}">注册</a></li>
+         <li><a style="color: #16A085;" href="{{ url_for('home.login') }}">登录</a></li>
+       {% endif %}
+       {% if logged_in %}
+         <li><a style="color: #16A085;" href="">定制</a></li>
+         <li><a style="color: #16A085;" href="{{ url_for('home.pwd') }}">密码</a></li>
+         <li><a style="color: #16A085;" href="">喜欢</a></li>
+         <li><a style="color: #16A085;" href="">历史</a></li>
+         <li><a style="color: #16A085;" href="{{ url_for('home.logout') }}">退出</a></li>
+       {% endif %}
+     </ul>
+     </div>
+    </nav>
+    <br><br><br>
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+
+    </div>
+  </body>
+</html>

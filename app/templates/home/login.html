@@ -1,0 +1,30 @@
+{% extends "home/home.html" %}
+{% block content %}
+<div class="container">
+    <div class="info">
+        <h1 style="color:#16A085;">VideoHub</h1>
+    </div>
+</div>
+<div class="form">
+    {% for msg in get_flashed_messages() %}
+    <p class="login-box-msg" style="color: red"><b>{{ msg }}</b></p>
+    {% endfor %}
+    <form class="login-form" action="/login/" method="post">
+        {% for err in form.account.errors %}
+        <div class="col-md-12">
+            <a style="color:red">{{ err }}</a>
+        </div>
+        {% endfor %}
+        {{ form.account }}
+        <br>
+
+        {{ form.pwd }}
+        <br>
+        {{ form.submit }}
+        {{ form.csrf_token }}
+        <p class="message">还没帐号? <a href="{{ url_for('home.signup') }}">快注册</a></p>
+    </form>
+</div>
+
+
+{% endblock %}

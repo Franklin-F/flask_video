@@ -1,0 +1,25 @@
+{% extends "home/home.html" %}
+{% block content %}
+<br>
+<br>
+<br>
+
+    <div class="container">
+      <div class="info">
+        <h1 style="color:#16A085;">请输入原密码来更新密码</h1>
+      </div>
+    </div>
+    <div class="form">
+      <form class="login-form" action="change-password" method="post">
+        {% if update_error %}
+          <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            Old password does not match
+          </div>
+        {% endif %}
+        <input type="password" name="oldPassword" placeholder="原密码" required autofocus/>
+        <input type="password" name="newPassword" placeholder="新密码" required/>
+        <button>提交</button>
+      </form>
+    </div>
+{% endblock %}
